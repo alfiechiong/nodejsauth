@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUser = exports.authToken = void 0;
+exports.loginUser = exports.secret = exports.authToken = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var auth_1 = __importDefault(require("./auth"));
@@ -61,11 +61,11 @@ exports.authToken = (function (req, res, next) {
         return res.sendStatus(401); // if there isn't any token
     verifyToken(token, req, res, next);
 });
-//export const secret = console.log(require('crypto').randomBytes(64).toString('hex'))
+exports.secret = console.log(require('crypto').randomBytes(64).toString('hex'));
 var generateAccessToken = function (loginData) {
     return jsonwebtoken_1.default.sign(loginData, process.env.SECRET_KEY, { expiresIn: '1800s' });
 };
-var loginUser = function (loginData) { return __awaiter(void 0, void 0, void 0, function () {
+exports.loginUser = function (loginData) { return __awaiter(void 0, void 0, void 0, function () {
     var authenticated;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -82,4 +82,3 @@ var loginUser = function (loginData) { return __awaiter(void 0, void 0, void 0, 
         }
     });
 }); };
-exports.loginUser = loginUser;

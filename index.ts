@@ -1,24 +1,22 @@
 import express from 'express'
-import {authToken, loginUser} from './modules'
+import {authToken, loginUser, secret} from './modules'
+import cors from 'cors'
  
 const app = express()
 const port = process.env.PORT || 8000
+app.use(cors())
 app.use(express.json());
-
 app.get('/', (req,res)=>{
     res.send("Hello this is the root  page")
 })
 app.post('/generate-access-token', async (req,res)=>{
-
     console.log(req.body)
     const {username,password} = req.body
     const token = await loginUser({username,password})
     res.json(token)
     //res.send(username)
 })
-/* app.get('generate-secret', (req,res)=>{
-    res.send(secret)
-}) */
+ app.get('generate-secret', (req,res)=>{secret}) 
 
 app.get('/userdata', authToken, (req,res)=>{
     res.send("successfully logged in")

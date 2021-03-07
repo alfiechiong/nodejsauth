@@ -41,8 +41,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var modules_1 = require("./modules");
+var cors_1 = __importDefault(require("cors"));
 var app = express_1.default();
 var port = process.env.PORT || 8000;
+app.use(cors_1.default());
 app.use(express_1.default.json());
 app.get('/', function (req, res) {
     res.send("Hello this is the root  page");
@@ -62,9 +64,7 @@ app.post('/generate-access-token', function (req, res) { return __awaiter(void 0
         }
     });
 }); });
-/* app.get('generate-secret', (req,res)=>{
-    res.send(secret)
-}) */
+app.get('generate-secret', function (req, res) { modules_1.secret; });
 app.get('/userdata', modules_1.authToken, function (req, res) {
     res.send("successfully logged in");
 });

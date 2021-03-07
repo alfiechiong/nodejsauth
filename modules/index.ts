@@ -21,7 +21,7 @@ export const authToken = ((req:any, res:any, next:()=>void) =>{
   }
 )
 
-//export const secret = console.log(require('crypto').randomBytes(64).toString('hex'))
+export const secret = console.log(require('crypto').randomBytes(64).toString('hex'))
 
 const generateAccessToken = (loginData:{username:string, password:string})=>{
   return jwt.sign(loginData, process.env.SECRET_KEY as string,{expiresIn:'1800s'})
