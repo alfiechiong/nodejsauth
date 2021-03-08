@@ -13,8 +13,12 @@ app.post('/generate-access-token', async (req,res)=>{
     console.log(req.body)
     const {username,password} = req.body
     const token = await loginUser({username,password})
-    res.json(token)
-    //res.send(username)
+    if(token){
+        res.status(200).json(token)
+    }else{
+        res.status(401).json("wrong email or password")
+    }
+    
 })
  app.get('generate-secret', (req,res)=>{secret}) 
 

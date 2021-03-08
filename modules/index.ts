@@ -32,6 +32,6 @@ export const loginUser = async (loginData:{username:string,password:string})=>{
   if(authenticated){
     return generateAccessToken(loginData)
   }else{
-    return "wrong email or password error"
+    return false
   }
 }

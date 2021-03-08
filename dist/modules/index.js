@@ -76,7 +76,7 @@ exports.loginUser = function (loginData) { return __awaiter(void 0, void 0, void
                     return [2 /*return*/, generateAccessToken(loginData)];
                 }
                 else {
-                    return [2 /*return*/, "wrong email or password error"];
+                    return [2 /*return*/, false];
                 }
                 return [2 /*return*/];
         }

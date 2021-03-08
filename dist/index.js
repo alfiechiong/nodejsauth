@@ -59,7 +59,12 @@ app.post('/generate-access-token', function (req, res) { return __awaiter(void 0
                 return [4 /*yield*/, modules_1.loginUser({ username: username, password: password })];
             case 1:
                 token = _b.sent();
-                res.json(token);
+                if (token) {
+                    res.status(200).json(token);
+                }
+                else {
+                    res.status(401).json("wrong email or password");
+                }
                 return [2 /*return*/];
         }
     });
